@@ -33,4 +33,32 @@ border-radius: 20px;
 
   }
 }
+.left {
+  /* Rectangle 1 */
+ 
+ position: absolute;
+ width: 420px;
+ height: 556px;
+ left: 177px;
+ top: 18px;
+ 
+ background: linear-gradient(180deg, #181143 0%, rgba(96, 89, 142, 0.62) 100%);
+ box-shadow: 7px 8px 10px #B4B6CF;
+ border-radius: 40px;
+ 
+ }
+ .righttop {
+  /* Rectangle 2 */
 
+position: absolute;
+width: 640px;
+height: 272px;
+left: 620px;
+top: 18px;
+
+background: linear-gradient(180deg, #181143 0%, rgba(96, 89, 142, 0.62) 100%);
+box-shadow: 7px 8px 10px #B4B6CF;
+border-radius: 20px;
+
+
+}

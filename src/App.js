@@ -1,34 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-import  Main  from './Pages/Main';
-import Logo from './images/logo.jpg';
-import New from './Pages/new';
+import React from 'react'
+import Current from './comp/Current'
+import Weekly from './comp/Weekly'
+import Hourly from './comp/Hourly'
+import axios from 'axios'
 
-function App() {
-  const mystyle ={
-      position: "absolute",
-      width: "70px",
-      height: "70px",
-      left: "65px",
-      top: "15px",
-      
-
-      
+const App = () => {
+  
 
 
+  const Get= ()=> {
+    const date = new Date(); 
 
-  };
+   let day= date.getDate(); 
+   let month=date.getMonth();
+   let year=date.getFullYear();
+   let hour=date.getHours()
+
+   let datemod= year+'-'+month+'-'+day+':'+hour;
+   let dateftreoneday=year+'-'+month+'-'+(day+1)+':'+hour;
+
+    console.log(day); 
+
+    axios.get(`https://api.weatherbit.io/v2.0/history/hourly?city=Patna&start_date=${datemod}&end_date=${dateftreoneday}&tz=local&key=0896747880bb4543a730d565fcacb9a0`)
+    .then (res=> console.log(res))
+    .catch (err=> console.log(err))
+  }
+
+
+
   return (
-    <div className="App">
-      <div className='mainapp'>
-              <div className='sidebar'></div>
+    <div>
+      <button onClick={Get}>Get</button>
+      <Current/>
+      <Weekly/>
+      <Hourly/>
 
-           <New/>
-       
-     </div>
 
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
