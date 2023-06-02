@@ -1,40 +1,89 @@
-import React from 'react'
+import React, { useState ,useEffect} from 'react'
 import Current from './comp/Current'
 import Weekly from './comp/Weekly'
 import Hourly from './comp/Hourly'
 import axios from 'axios'
+import getFomrattedWeatherData from './services/weatherservice'
+
 
 const App = () => {
+  const [city,setCity]=useState('')
+
+  const [query,setQuery]=useState({q:'Aligarh'});
+  const [units,setUnits]=useState('metric');
+  const [weather,setWeather]=useState(null);
+
+  const Search =(e) => {
+    e.preventDefault();
+    if (city !== '') {
+      setQuery({q:city})
+    }
+
+  }
+
+  const CurrentLocation = ()=> {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos)=> {
+        let lat=pos.coords.latitude;
+        let lon=pos.coords.longitude;
+
+        setQuery({lat,lon});
+      })
+    }
+  }
+ 
+
+  useEffect(() => {
+    const fetchWeather =async ()=> {
+      await getFomrattedWeatherData( {...query,units})
+      .then((data)=> {
+        setWeather(data)
+        
+        console.log(weather)
+      })
+    }
+  
+    fetchWeather();
+  
+    
+  }, [query,units])
+  
+
+  
   
 
 
-  const Get= ()=> {
-    const date = new Date(); 
-
-   let day= date.getDate(); 
-   let month=date.getMonth();
-   let year=date.getFullYear();
-   let hour=date.getHours()
-
-   let datemod= year+'-'+month+'-'+day+':'+hour;
-   let dateftreoneday=year+'-'+month+'-'+(day+1)+':'+hour;
-
-    console.log(day); 
-
-    axios.get(`https://api.weatherbit.io/v2.0/history/hourly?city=Patna&start_date=${datemod}&end_date=${dateftreoneday}&tz=local&key=0896747880bb4543a730d565fcacb9a0`)
-    .then (res=> console.log(res))
-    .catch (err=> console.log(err))
-  }
-
+  
+  
 
 
   return (
     <div>
-      <button onClick={Get}>Get</button>
-      <Current/>
-      <Weekly/>
-      <Hourly/>
+     
+      <input type='text' value={city} onChange={(e)=> setCity(e.currentTarget.value)}/>
+      <button onClick={Search}>Search</button>
 
+      UNits 
+      <button onClick={(e)=> setUnits('metric')}>&deg;C</button>
+      <button onClick={(e)=> setUnits('standard')}>&deg;F</button>
+
+      Get Current Location weather
+      <button onClick={CurrentLocation}>Current location</button>
+
+     {weather &&
+      <>
+      <Current weather={weather} />
+      <Hourly items={weather.hourly} />
+      <Weekly items={weather.daily}/>
+      
+      </>
+      
+      
+      }
+     
+      
+      
+     
 
     </div>
   )
