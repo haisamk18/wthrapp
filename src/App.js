@@ -65,7 +65,7 @@ const App = () => {
 
       UNits 
       <button onClick={(e)=> setUnits('metric')}>&deg;C</button>
-      <button onClick={(e)=> setUnits('standard')}>&deg;F</button>
+      <button onClick={(e)=> setUnits('imperial')}>&deg;F</button>
 
       Get Current Location weather
       <button onClick={CurrentLocation}>Current location</button>
