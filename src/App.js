@@ -4,10 +4,15 @@ import Weekly from './comp/Weekly'
 import Hourly from './comp/Hourly'
 import axios from 'axios'
 import getFomrattedWeatherData from './services/weatherservice'
+import {FcSearch} from 'react-icons/fc';
+import {GoLocation} from 'react-icons/go'
+import './App.css';
 
 
 const App = () => {
   const [city,setCity]=useState('')
+
+  const [unitselected,setUnitselected]=useState(f)
 
   const [query,setQuery]=useState({q:'Aligarh'});
   const [units,setUnits]=useState('metric');
@@ -58,23 +63,38 @@ const App = () => {
 
 
   return (
-    <div>
+    <div className='appp'>
+
+      <div className='header'>
+          <div className='searchbox'>
+            <input className='input' type='text' value={city} onChange={(e)=> setCity(e.currentTarget.value)}/>
+            <button onClick={Search}><FcSearch/></button>
+            <button onClick={CurrentLocation}><GoLocation/></button>
+          </div>
+          
+
+          <div className='units'>
+              <button onClick={(e)=> setUnits('metric')}>&deg;C</button>
+              <button onClick={(e)=> setUnits('imperial')}>&deg;F</button>
+          </div>
+      </div>
      
-      <input type='text' value={city} onChange={(e)=> setCity(e.currentTarget.value)}/>
-      <button onClick={Search}>Search</button>
+      
 
-      UNits 
-      <button onClick={(e)=> setUnits('metric')}>&deg;C</button>
-      <button onClick={(e)=> setUnits('imperial')}>&deg;F</button>
-
-      Get Current Location weather
-      <button onClick={CurrentLocation}>Current location</button>
+     
+     
 
      {weather &&
       <>
-      <Current weather={weather} />
+      <div className='container'>
+      <div className='leftside'><Current weather={weather} /></div>
+
+      <div className='rightside'>
       <Hourly items={weather.hourly} />
       <Weekly items={weather.daily}/>
+      </div>
+      </div>
+      
       
       </>
       
