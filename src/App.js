@@ -12,7 +12,7 @@ import './App.css';
 const App = () => {
   const [city,setCity]=useState('')
 
-  const [unitselected,setUnitselected]=useState(f)
+  const [unitselected,setUnitselected]=useState(true)
 
   const [query,setQuery]=useState({q:'Aligarh'});
   const [units,setUnits]=useState('metric');
