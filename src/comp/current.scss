@@ -1,0 +1,71 @@
+.currentcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 74px 0px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 4px;
+    font-weight: 500;
+
+    .currentname {
+        text-align: center;
+        font-size: 1.3em;
+        font-weight: 700;
+        
+        margin-bottom: 10px;
+    
+    
+    }
+
+    .currenttime {
+        text-align: center;
+        font-size: 0.9em;
+        font-weight: 400;
+        
+        margin-bottom: 30px;
+    
+    }
+}
+
+
+
+
+.weatherdetail {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 500;
+    
+
+}
+
+.detailconflex {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    align-items: center;
+    
+    margin-bottom: 20px;
+}
+.tempdetailcon {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+   
+}
+
+@media only screen and (max-width:600px) {
+
+    .currentcon {
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+        padding: 50px 0px;
+    }
+    
+}

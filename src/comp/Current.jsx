@@ -1,7 +1,7 @@
 import React from 'react'
 import { fromatToLocaltime } from '../services/weatherservice'
 import { iconUrlfromCode } from '../services/weatherservice'
-import './current.css';
+import './current.scss';
 
 const Current = ({weather:{name,timezone,dt,country,details,icon,temp,temp_min,temp_max,sunrise,sunset,speed,humidity,feels_like}}) => {
   return (

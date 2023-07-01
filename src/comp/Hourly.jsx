@@ -1,7 +1,7 @@
 import React from 'react'
 import { fromatToLocaltime } from '../services/weatherservice'
 import { iconUrlfromCode } from '../services/weatherservice'
-import './hourly.css'
+import './hourly.scss'
 
 const Hourly = ({items}) => {
   return (

@@ -6,7 +6,8 @@ import axios from 'axios'
 import getFomrattedWeatherData from './services/weatherservice'
 import {FcSearch} from 'react-icons/fc';
 import {GoLocation} from 'react-icons/go'
-import './App.css';
+import {AiFillGithub} from 'react-icons/ai';
+import './App.scss';
 
 
 const App = () => {
@@ -17,6 +18,8 @@ const App = () => {
   const [query,setQuery]=useState({q:'Aligarh'});
   const [units,setUnits]=useState('metric');
   const [weather,setWeather]=useState(null);
+
+  const [clicked,setClicked]=useState(true);
 
   const Search =(e) => {
     e.preventDefault();
@@ -66,6 +69,8 @@ const App = () => {
     <div className='appp'>
 
       <div className='header'>
+
+          <div className='logo'>WE<span>A</span>TH<span>A</span>PHORI<span>A</span></div>
           <div className='searchbox'>
             <input className='input' type='text' value={city} onChange={(e)=> setCity(e.currentTarget.value)}/>
             <button onClick={Search}><FcSearch/></button>
@@ -87,12 +92,12 @@ const App = () => {
      {weather &&
       <>
       <div className='container'>
-      <div className='leftside'><Current weather={weather} /></div>
+          <div className='leftside'><Current weather={weather} /></div>
 
-      <div className='rightside'>
-      <Hourly items={weather.hourly} />
-      <Weekly items={weather.daily}/>
-      </div>
+          <div className='rightside'>
+          <Hourly items={weather.hourly} />
+          <Weekly items={weather.daily}/>
+        </div>
       </div>
       
       
@@ -103,7 +108,7 @@ const App = () => {
      
       
       
-     
+       <div className='devdet'>Developer -Haisam Khurshid<span><a href='' target='_blank'><AiFillGithub/></a></span></div>
 
     </div>
   )
